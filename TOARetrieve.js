@@ -2,7 +2,7 @@ var axios = require("axios")
 
 var TOAKey = process.env.TOAKEY
 var seasonKey = "1920"
-var teamNumber = process.argv[2]
+var teamNumber = 14891
 var call1 = "/team/" + teamNumber + "/matches/"+ seasonKey
 var matchlist = []
 var matchKey = []
@@ -54,14 +54,14 @@ function AddToScore(match, team) {
         totalList[matchKey.indexOf(match[0].match_key)] = match[0].red_score
     }else if(team > 20){
         autoList[matchKey.indexOf(match[0].match_key)] = match[0].blue_auto_score
-        autoList[matchKey.indexOf(match[0].match_key)] = match[0].blue_tele_score
-        autoList[matchKey.indexOf(match[0].match_key)] = match[0].blue_end_score
+        teleList[matchKey.indexOf(match[0].match_key)] = match[0].blue_tele_score
+        endList[matchKey.indexOf(match[0].match_key)] = match[0].blue_end_score
         totalList[matchKey.indexOf(match[0].match_key)] = match[0].blue_score
     }
     if(totalList.indexOf("") === -1 /*&& autoList.indexOf("") === -1 && teleList.indexOf("") === -1 && endList.indexOf("") === -1*/){
-        // console.log("total autonomous scores: " + autoList.toString())
-        // console.log("total teleop scores: " + teleList.toString())
-        // console.log("total end game scores: " + endList.toString())
+        console.log("total autonomous scores: " + autoList.toString())
+        console.log("total teleop scores: " + teleList.toString())
+        console.log("total end game scores: " + endList.toString())
         console.log("total scores: " + totalList.toString())
     }
 }
