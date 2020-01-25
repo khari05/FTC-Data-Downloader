@@ -32,3 +32,8 @@
  - `auto_total` - total points scored in the autonomous period
  - for some reason, `tele_total` returns null so if you want to find that, you will have to add `tower_bonus`, `tele_placed_points`, and `tele_transport_points` then subtract `tele_returned` from the total.
  - `end_total` - total amount of points scored during end game
+### Penalties
+ - `red_min_pen` - number of minor penalties recieved by blue to contribute to red score
+ - `red_maj_pen` - number of major penalties recieved by blue to contribute to red score
+ - `blue_min_pen` - number of minor penalties recieved by red to contribute to blue score
+ - `blue_maj_pen` - number of major penalties recieved by red to contribute to blue score
