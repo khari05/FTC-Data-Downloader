@@ -64,7 +64,7 @@ function run(teamNumber){
                     })
                 instance.get("/match/" + matchList[i].match_key)
                     .then(function (match){
-                        addToScore(match.data, matchList[matchKey.indexOf(match.data[0].match_key)].station)
+                        addToScore(match.data, matchList[matchKey.indexOf(match.data[0].match_key)].station, teamNumber)
                     })
                     .catch(function(error) {
                         console.error(error)
@@ -81,7 +81,7 @@ function run(teamNumber){
                     })
                 instance.get("/match/" + LTList[i].match_key)
                     .then(function (match){
-                        addToScore(match.data, LTList[matchKey.indexOf(match.data[0].match_key)].station)
+                        addToScore(match.data, LTList[matchKey.indexOf(match.data[0].match_key)].station, teamNumber)
                     })
                     .catch(function(error) {
                         console.error(error)
@@ -120,7 +120,7 @@ function addToScore(match, team, teamNumber) {
         matchlist = []
         LTList = []
         if (teamList.length > teamList.indexOf(teamNumber) + 1) {
-            setTimeout(run, 30000, teamList[teamList.indexOf(teamNumber) + 1])
+            setTimeout(run, 60000, teamList[teamList.indexOf(teamNumber) + 1])
         }
     }
 }
@@ -171,7 +171,7 @@ function addToData(match, team, teamNumber) {
         matchlist = []
         LTList = []
         if (teamList.length > teamList.indexOf(teamNumber) + 1) {
-            setTimeout(run, 30000, teamList[teamList.indexOf(teamNumber) + 1])
+            setTimeout(run, 60000, teamList[teamList.indexOf(teamNumber) + 1])
         }
     }
 }
