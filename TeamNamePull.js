@@ -20,9 +20,7 @@ const instance = axios.create({
 fs.readFile(filepath, "utf8", function (err, data) {
     if (err) throw err
     teamList = data.split("\n")
-    for (i = 0; i < teamList.length; i++) {
-        run(teamList[i])
-    }
+    run(teamList[0])
     while (teamNameList.length < teamList.length) {
         teamNameList.push("")
     }
@@ -32,7 +30,9 @@ function run(teamNumber) {
     instance.get("/team/" + teamNumber)
         .then(function (team) {
             teamNameList[teamList.indexOf(teamNumber)] = team.data[0].team_name_short
-
+            if (teamList.length > teamList.indexOf(teamNumber) + 1) {
+                setTimeout(run, 2000, teamList[teamList.indexOf(teamNumber) + 1])
+            }
             if (teamNameList.indexOf("") < 0) {
                 for (i = 0; i < teamNameList.length; i++) {
                     console.log(teamNameList[i])

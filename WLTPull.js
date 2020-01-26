@@ -24,9 +24,7 @@ const instance = axios.create({
 fs.readFile(filepath, "utf8", function (err, data) {
     if (err) throw err
     teamList = data.split("\n")
-    for (i = 0; i < teamList.length; i++) {
-        run(teamList[i])
-    }
+    run(teamList[0])
     while (WLTList.length < teamList.length) {
         WLTList.push(["", "", ""])
     }
@@ -39,6 +37,10 @@ function run(teamNumber) {
             position[0] = wlt.data[0].wins
             position[1] = wlt.data[0].losses
             position[2] = wlt.data[0].ties
+
+            if (teamList.length > teamList.indexOf(teamNumber) + 1) {
+                setTimeout(run, 2000, teamList[teamList.indexOf(teamNumber) + 1])
+            }
 
             for (i = 0; i < WLTList.length; i++) {
                 printable[i] = (WLTList[i].indexOf("") < 0)
