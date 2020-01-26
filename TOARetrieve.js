@@ -47,14 +47,17 @@ function run(teamNumber){
                     LTList.shift()
                 }
             }
-            while (masterList.length < matchList.length + LTList.length){
+            for (i=0; i< LTList.length; i++){
+                matchList.push(LTList[i])
+            }
+            while (masterList.length < matchList.length){
                 masterList.push([])
                 for (i=0;i<21; i++){
                     masterList[masterList.length-1].push("")
                 }
             }
             for (i=0; i<matchList.length; i++){
-                matchKey.push(matchList[i].match_key)
+                matchKey[i] = (matchList[i].match_key)
                 instance.get("/match/" + matchList[i].match_key + "/details")
                     .then(function (match){
                         addToData(match.data, matchList[matchKey.indexOf(match.data[0].match_key)].station, teamNumber)
@@ -69,24 +72,6 @@ function run(teamNumber){
                     .catch(function(error) {
                         console.error(error)
                     })
-            }
-            for (i=0; i<LTList.length; i++){
-                matchKey.push(LTList[i].match_key)
-                instance.get("/match/" + LTList[i].match_key + "/details")
-                    .then(function (match){
-                        addToData(match.data, LTList[matchKey.indexOf(match.data[0].match_key)].station, teamNumber)
-                    })
-                    .catch(function(error) {
-                        console.error(error)
-                    })
-                instance.get("/match/" + LTList[i].match_key)
-                    .then(function (match){
-                        addToScore(match.data, LTList[matchKey.indexOf(match.data[0].match_key)].station, teamNumber)
-                    })
-                    .catch(function(error) {
-                        console.error(error)
-                    })
-
             }
         })
         .catch( function(error) {
