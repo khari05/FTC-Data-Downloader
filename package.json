@@ -4,7 +4,7 @@
   "description": "a program that uses the TOA API to download match data for a given team",
   "main": "TOARetrieve.js",
   "dependencies": {
-    "axios": "^0.21.2"
+    "axios": "^1.6.0"
   },
   "devDependencies": {},
   "scripts": {
